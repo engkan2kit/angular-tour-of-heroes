@@ -5,7 +5,7 @@ var Hero = require('../models/Hero.js');
 
 /* Get All Heroes. */
 router.get('/', function(req, res, next) {
-  Hero.find(function(err,heroes){
+  Hero.find({},{"_id":0,"_v":0},function(err,heroes){
     if(err) return next(err);
     res.json(heroes);
   });
