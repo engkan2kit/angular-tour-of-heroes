@@ -1,7 +1,7 @@
 import { Component, OnInit,Injectable } from '@angular/core';
 import { Hero } from '../hero';
-import { HEROES } from '../mock-heroes';
 import { HttpClient } from '@angular/common/http';
+import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-heroes',
@@ -9,24 +9,33 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./heroes.component.css']
 })
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class HeroesComponent implements OnInit {
   hero: Hero = {
     id:1,
     name: 'Windstorm'
   };
-  heroes: any;
+  heroes: Hero[];
   selectedHero: Hero;
+  
+
+  constructor(private heroService: HeroService) { }
+  //private http: HttpClient
+  ngOnInit() {
+    //this.http.get('/hero').subscribe(data => {
+    //  this.heroes = data;
+    //});
+    this.getHeroes();
+  }
+
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
   }
 
-  constructor(private http: HttpClient) { }
-
-  ngOnInit() {
-    this.http.get('/hero').subscribe(data => {
-      this.heroes = data;
-    });
+  getHeroes(): void {
+    this.heroService.getHeroes()
+        .subscribe(heroes => this.heroes = heroes);
   }
-
 }

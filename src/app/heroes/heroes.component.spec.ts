@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { HeroesComponent } from './heroes.component';
+import { HeroDetailComponent } from '../hero-detail/hero-detail.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('HeroesComponent', () => {
@@ -9,7 +10,7 @@ describe('HeroesComponent', () => {
   let httpMock: HttpTestingController;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeroesComponent ],
+      declarations: [ HeroesComponent,HeroDetailComponent ],
       imports: [FormsModule,HttpClientTestingModule]
     })
     .compileComponents();
