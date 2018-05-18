@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 
 var HeroSchema = new mongoose.Schema({
-    id: Number,
     name: String,
 });
 

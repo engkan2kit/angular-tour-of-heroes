@@ -16,10 +16,12 @@ mongoose.connect('mongodb://localhost/mean-angular5', {promiseLibrary: require('
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':'false'}));
-app.use( express.static(path.join(__dirname, 'dist')));
-app.use('/heroes', express.static(path.join(__dirname, 'dist')));
-app.use('/hero', hero);
-
+app.use( express.static(path.join(__dirname, 'dist/angular-tour-of-heroes')));
+app.use('/heroes', express.static(path.join(__dirname, 'dist/angular-tour-of-heroes')));
+app.use('/api/heroes', hero);
+app.use('/*',function(req, res) {
+  res.sendfile(__dirname + '/dist/angular-tour-of-heroes/index.html');
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
